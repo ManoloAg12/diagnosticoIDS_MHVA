@@ -1,0 +1,150 @@
+/* style.css - Versión Dark Premium */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* ===== ANIMACIÓN CARRUSEL INFINITO ===== */
+.animate-marquee {
+    animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ===== ANIMACIONES DE FLOTACIÓN ===== */
+.float-anim {
+    animation: floatPremium 6s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes floatPremium {
+    0% { transform: translateY(0px) rotate(-22deg) scale(1.05); }
+    50% { transform: translateY(-25px) rotate(-16deg) scale(1.1); }
+    100% { transform: translateY(0px) rotate(-22deg) scale(1.05); }
+}
+
+/* ===== GLASSMORPHISM ===== */
+.glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ===== SCROLL REVEAL ===== */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ===== EFECTO 3D EN IMAGENES ===== */
+.tilt-effect {
+    transition: transform 0.3s ease-out;
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+.tilt-effect:hover {
+    transform: rotateY(5deg) rotateX(3deg) scale(1.02);
+}
+
+/* ===== PULSE ANIMATION PARA CTAs (Ajustado a tono Black #0f0f0f) ===== */
+@keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(15, 15, 15, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(15, 15, 15, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(15, 15, 15, 0); }
+}
+
+.btn-pulse {
+    animation: pulse-ring 2s ease-out infinite;
+}
+
+/* ===== NOTIFICATION TOAST PREMIUM ===== */
+.toast-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-left: 4px solid;
+    color: #0f0f0f;
+}
+
+@keyframes toastIn {
+    from { transform: translateX(100%) translateY(20px); opacity: 0; }
+    to { transform: translateX(0) translateY(0); opacity: 1; }
+}
+
+@keyframes toastOut {
+    from { transform: translateX(0) translateY(0); opacity: 1; }
+    to { transform: translateX(100%) translateY(20px); opacity: 0; }
+}
+
+.toast-in {
+    animation: toastIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.toast-out {
+    animation: toastOut 0.4s ease-in forwards;
+}
+
+/* ===== COUNTER BADGE ===== */
+.cart-badge {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cart-badge.bump {
+    animation: bump 0.3s ease;
+}
+
+@keyframes bump {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+/* ===== SCROLLBAR MODERNO ===== */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(15, 15, 15, 0.2); /* Ajustado a Black */
+    border-radius: 4px;
+}
+
+/* ===== RESPONSIVE TWEAKS ===== */
+@media (max-width: 768px) {
+    .scroll-reveal {
+        transform: translateY(30px);
+    }
+    .float-anim {
+        animation: floatMobile 6s ease-in-out infinite;
+    }
+    @keyframes floatMobile {
+        0% { transform: translateY(0px) rotate(-15deg) scale(1); }
+        50% { transform: translateY(-15px) rotate(-10deg) scale(1.05); }
+        100% { transform: translateY(0px) rotate(-15deg) scale(1); }
+    }
+}
+
+/* ===== DELAYS ===== */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }

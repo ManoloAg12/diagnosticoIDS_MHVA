@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bolsa de Compras · Urban Kicks</title>
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            beige: '#F5F0ED',
+                            black: '#0f0f0f', 
+                            accent: '#D49A89',
+                            gold: '#c9a84c',
+                            darkBg: '#000000', 
+                            darkCard: '#111111' 
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- SCRIPT ANTI-PARPADEO MODO OSCURO -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+    <!-- Referencia al CSS un nivel arriba -->
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="bg-brand-beige dark:bg-brand-darkBg overflow-x-hidden font-sans text-gray-800 dark:text-gray-100 transition-colors duration-500 min-h-screen flex flex-col" id="body-bg">
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div id="toast-container" class="fixed bottom-8 right-8 z-[100] flex flex-col items-end space-y-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- ===== NAVEGACIÓN ===== -->
+    <header class="w-full flex justify-between items-center px-4 md:px-8 py-4 z-50 bg-white/70 dark:bg-brand-darkBg/80 backdrop-blur-xl shadow-sm border-b border-white/20 dark:border-white/5">
+        <div class="flex items-center gap-6">
+            <a href="../index.html" class="font-display font-bold text-2xl tracking-widest text-brand-black dark:text-white flex items-center gap-2 hover:opacity-80 transition">
+                <svg class="w-6 h-6 text-brand-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
+                URBAN KICKS
+            </a>
+        </div>
+        
+        <div class="flex items-center gap-4 lg:gap-6">
+            <a href="../index.html" class="text-sm font-semibold tracking-wider text-brand-black dark:text-white hover:text-brand-gold transition flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                SEGUIR COMPRANDO
+            </a>
+            
+            <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-brand-black/10 dark:hover:bg-white/10 transition-colors relative overflow-hidden text-brand-black dark:text-white" aria-label="Cambiar tema">
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== CONTENIDO DEL CARRITO ===== -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-6 py-12 md:py-20">
+        <h1 class="font-display text-4xl md:text-5xl font-bold text-brand-black dark:text-white uppercase tracking-widest mb-10">Tu Bolsa</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="cart-container">
+            
+            <!-- Lista de Productos (Se llena con JS) -->
+            <div class="col-span-1 lg:col-span-8 space-y-6" id="cart-items">
+                <!-- Estado de Carga / Vacío -->
+                <div class="text-center py-20 text-gray-500 dark:text-gray-400" id="empty-state">
+                    <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <p class="text-lg tracking-widest uppercase mb-6">Tu bolsa está vacía</p>
+                    <a href="../index.html" class="bg-brand-black dark:bg-white text-white dark:text-brand-black px-8 py-3 font-bold uppercase tracking-widest text-sm hover:opacity-90 transition">Descubrir Productos</a>
+                </div>
+            </div>
+
+            <!-- Resumen de Compra -->
+            <div class="col-span-1 lg:col-span-4 hidden" id="order-summary">
+                <div class="bg-white dark:bg-brand-darkCard rounded-2xl p-8 border border-gray-200 dark:border-white/5 shadow-xl sticky top-24">
+                    <h2 class="font-display text-2xl font-bold text-brand-black dark:text-white uppercase tracking-widest mb-6 border-b border-gray-200 dark:border-white/10 pb-4">Resumen</h2>
+                    
+                    <div class="space-y-4 text-sm font-medium text-gray-600 dark:text-gray-400 mb-6">
+                        <div class="flex justify-between">
+                            <span>Subtotal</span>
+                            <span class="text-brand-black dark:text-white font-bold" id="summary-subtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Envío</span>
+                            <span class="text-brand-black dark:text-white font-bold" id="summary-shipping">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center border-t border-gray-200 dark:border-white/10 pt-6 mb-8">
+                        <span class="font-display text-lg uppercase tracking-widest text-brand-black dark:text-white">Total</span>
+                        <span class="font-display text-3xl font-bold text-brand-black dark:text-brand-gold" id="summary-total">$0.00</span>
+                    </div>
+
+                    <button id="checkout-btn" class="w-full bg-brand-black dark:bg-brand-gold text-white dark:text-brand-black font-bold uppercase tracking-widest py-4 px-6 shadow-xl hover:opacity-90 transition-all rounded-xl btn-pulse relative group">
+                        Proceder al Pago
+                    </button>
+                    
+                    <p class="text-xs text-center text-gray-500 mt-4">Impuestos incluidos. Pago 100% seguro.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-brand-black text-white py-8 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-gray-500">
+            <p>&copy; 2026 Urban Kicks. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script del Carrito -->
+    <script src="../js/cart.js"></script>
+</body>
+</html>

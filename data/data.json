@@ -1,0 +1,328 @@
+{
+  "shoes": [
+    {
+      "id": "model-af1",
+      "name": "AIRFORCE 1",
+      "subtitle": "'07 Low Premium",
+      "price": 120.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5],
+      "colors": [
+        {
+          "colorId": "c-peach",
+          "colorName": "Peach Dust",
+          "colorHex": "#e6b09b",
+          "cssFilter": "hue-rotate(320deg) brightness(1.1) sepia(0.3)"
+        },
+        {
+          "colorId": "c-olive",
+          "colorName": "Olive Green",
+          "colorHex": "#6a7455",
+          "cssFilter": "hue-rotate(60deg) brightness(0.9)"
+        },
+        {
+          "colorId": "c-slate",
+          "colorName": "Slate Blue",
+          "colorHex": "#8c98c1",
+          "cssFilter": "hue-rotate(200deg) brightness(1.2)"
+        }
+      ]
+    },
+    {
+      "id": "model-am90",
+      "name": "AIR MAX 90",
+      "subtitle": "Essential",
+      "price": 140.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 8.5, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-infrared",
+          "colorName": "Infrared",
+          "colorHex": "#d26c59",
+          "cssFilter": "hue-rotate(350deg) saturate(2)"
+        },
+        {
+          "colorId": "c-volt",
+          "colorName": "Volt Yellow",
+          "colorHex": "#e3d16e",
+          "cssFilter": "hue-rotate(10deg) saturate(2.5)"
+        }
+      ]
+    },
+    {
+      "id": "model-dunk",
+      "name": "DUNK LOW",
+      "subtitle": "Retro",
+      "price": 115.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [5, 6, 7, 8, 9],
+      "colors": [
+        {
+          "colorId": "c-panda",
+          "colorName": "Panda",
+          "colorHex": "#2b2b2b",
+          "cssFilter": "grayscale(1) contrast(1.2)"
+        },
+        {
+          "colorId": "c-uni-blue",
+          "colorName": "University Blue",
+          "colorHex": "#7b9bcc",
+          "cssFilter": "hue-rotate(190deg) brightness(1.1)"
+        }
+      ]
+    },
+    {
+      "id": "model-yeezy",
+      "name": "YEEZY BOOST",
+      "subtitle": "350 V2",
+      "price": 220.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10, 11],
+      "colors": [
+        {
+          "colorId": "c-oreo",
+          "colorName": "Oreo",
+          "colorHex": "#1a1a1a",
+          "cssFilter": "grayscale(0.8) contrast(1.3)"
+        },
+        {
+          "colorId": "c-zym",
+          "colorName": "Zebra",
+          "colorHex": "#f5f5f5",
+          "cssFilter": "contrast(1.5) brightness(1.2)"
+        }
+      ]
+    },
+    {
+      "id": "model-jordan1",
+      "name": "JORDAN 1",
+      "subtitle": "High OG",
+      "price": 180.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-bred",
+          "colorName": "Bred",
+          "colorHex": "#b22222",
+          "cssFilter": "hue-rotate(340deg) saturate(3)"
+        },
+        {
+          "colorId": "c-royal",
+          "colorName": "Royal",
+          "colorHex": "#1a3a8a",
+          "cssFilter": "hue-rotate(220deg) brightness(0.8)"
+        }
+      ]
+    },
+    {
+      "id": "model-newbalance",
+      "name": "NEW BALANCE",
+      "subtitle": "990v5",
+      "price": 185.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [7, 8, 9, 10, 11],
+      "colors": [
+        {
+          "colorId": "c-gray",
+          "colorName": "Classic Gray",
+          "colorHex": "#a8a8a8",
+          "cssFilter": "grayscale(0.9) brightness(1.1)"
+        },
+        {
+          "colorId": "c-navy",
+          "colorName": "Navy",
+          "colorHex": "#1b2a47",
+          "cssFilter": "hue-rotate(220deg) brightness(0.5)"
+        }
+      ]
+    },
+    {
+      "id": "model-puma",
+      "name": "PUMA R698",
+      "subtitle": "Sakura",
+      "price": 220.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-sakura",
+          "colorName": "Sakura Blossom",
+          "colorHex": "#ffb7c5",
+          "cssFilter": "hue-rotate(330deg) saturate(1.8)"
+        }
+      ]
+    },
+    {
+      "id": "model-adidas",
+      "name": "ADIDAS ULTRA",
+      "subtitle": "4D Future",
+      "price": 200.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10, 11],
+      "colors": [
+        {
+          "colorId": "c-future",
+          "colorName": "Future White",
+          "colorHex": "#e8e8e8",
+          "cssFilter": "brightness(1.3) saturate(0.5)"
+        },
+        {
+          "colorId": "c-black",
+          "colorName": "Triple Black",
+          "colorHex": "#0a0a0a",
+          "cssFilter": "grayscale(1) brightness(0.3)"
+        }
+      ]
+    },
+    {
+      "id": "model-asics",
+      "name": "ASICS GEL",
+      "subtitle": "Kayano 14",
+      "price": 160.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-cream",
+          "colorName": "Cream White",
+          "colorHex": "#f5e6d3",
+          "cssFilter": "hue-rotate(30deg) brightness(1.2)"
+        },
+        {
+          "colorId": "c-silver",
+          "colorName": "Silver",
+          "colorHex": "#c0c0c0",
+          "cssFilter": "grayscale(0.7) brightness(1.4)"
+        }
+      ]
+    },
+    {
+      "id": "model-converse",
+      "name": "CONVERSE",
+      "subtitle": "Chuck 70",
+      "price": 85.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [5, 6, 7, 8, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-white",
+          "colorName": "White",
+          "colorHex": "#ffffff",
+          "cssFilter": "brightness(1.5) saturate(0.2)"
+        },
+        {
+          "colorId": "c-black-con",
+          "colorName": "Black",
+          "colorHex": "#1a1a1a",
+          "cssFilter": "grayscale(1) brightness(0.3)"
+        }
+      ]
+    },
+    {
+      "id": "model-vans",
+      "name": "VANS OLD SKOOL",
+      "subtitle": "Classic",
+      "price": 75.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [5, 6, 7, 8, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-black-white",
+          "colorName": "Black & White",
+          "colorHex": "#2b2b2b",
+          "cssFilter": "grayscale(1) contrast(1.5)"
+        },
+        {
+          "colorId": "c-marshmallow",
+          "colorName": "Marshmallow",
+          "colorHex": "#f5f0eb",
+          "cssFilter": "brightness(1.3) saturate(0.3)"
+        }
+      ]
+    },
+    {
+      "id": "model-saucony",
+      "name": "SAUCONY",
+      "subtitle": "Grid 9000",
+      "price": 150.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10, 11],
+      "colors": [
+        {
+          "colorId": "c-teal",
+          "colorName": "Teal Mint",
+          "colorHex": "#5fa8a1",
+          "cssFilter": "hue-rotate(170deg) saturate(1.5)"
+        },
+        {
+          "colorId": "c-coral",
+          "colorName": "Coral Pink",
+          "colorHex": "#f08080",
+          "cssFilter": "hue-rotate(340deg) saturate(2)"
+        }
+      ]
+    },
+    {
+      "id": "model-reebok",
+      "name": "REEBOK",
+      "subtitle": "Club C 85",
+      "price": 90.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-white-green",
+          "colorName": "White & Green",
+          "colorHex": "#e8f0e8",
+          "cssFilter": "brightness(1.2) hue-rotate(120deg) saturate(0.5)"
+        },
+        {
+          "colorId": "c-tan",
+          "colorName": "Tan",
+          "colorHex": "#d4b895",
+          "cssFilter": "hue-rotate(20deg) brightness(1.1)"
+        }
+      ]
+    },
+    {
+      "id": "model-balenciaga",
+      "name": "BALENCIAGA",
+      "subtitle": "Triple S",
+      "price": 850.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-cream-balen",
+          "colorName": "Cream",
+          "colorHex": "#f5e6d3",
+          "cssFilter": "brightness(1.2) saturate(0.4)"
+        },
+        {
+          "colorId": "c-black-balen",
+          "colorName": "Black",
+          "colorHex": "#0a0a0a",
+          "cssFilter": "grayscale(1) brightness(0.3)"
+        }
+      ]
+    },
+    {
+      "id": "model-golden-goose",
+      "name": "GOLDEN GOOSE",
+      "subtitle": "Super-Star",
+      "price": 450.00,
+      "baseImage": "https://pngimg.com/uploads/running_shoes/running_shoes_PNG5816.png",
+      "availableSizes": [6, 7, 8, 9, 10],
+      "colors": [
+        {
+          "colorId": "c-distressed",
+          "colorName": "Distressed White",
+          "colorHex": "#f0ece4",
+          "cssFilter": "brightness(1.1) saturate(0.3)"
+        }
+      ]
+    }
+  ]
+}
