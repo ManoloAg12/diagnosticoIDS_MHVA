@@ -16,5 +16,10 @@ Se ha establecido la siguiente organización para mantener el proyecto modular:
 
 ## Avances Implementados
 
-* **Modo Oscuro:** Sistema funcional de cambio de tema (claro/oscuro) adaptado a la interfaz.
-* **Detalles Visuales (UI):** Implementación de la paleta de colores (incluyendo tonos carbón y negro absoluto), reestructuración de la página principal y estilos estáticos detallados para mejorar la presentación del producto.
+* **Catálogo Dinámico:** Carga de productos estructurada a través de un archivo centralizado `data.json`.
+* **Modo Oscuro y Claro:** Sistema de cambio de tema persistente mediante `localStorage` con detección automática de las preferencias del sistema y anti-parpadeo al cargar.
+* **Visor Interactivo y Carrusel 3D:** Rotación automática de imágenes por producto y aplicación dinámica de filtros de color en tiempo real.
+* **Páginas por Categorías:** Vistas especializadas para **Hombre**, **Mujer** y **Ofertas** (con precios rebajados y etiquetas dinámicas), manteniendo un diseño consistente en todo el sitio.
+* **Ventana Modal Premium:** Vista rápida emergente al hacer clic en los productos, permitiendo explorar miniaturas, cambiar entre colores disponibles y agregar al carrito al instante.
+* **Sistema de Carrito de Compras:** Gestión de compras con almacenamiento local (`localStorage`), contador dinámico con efecto visual de rebote (*bump*) y notificaciones flotantes (*Toasts*).
+* **Información Localizada:** Footer adaptado con datos de contacto y dirección ficticia en **Santa Ana, El Salvador**.
