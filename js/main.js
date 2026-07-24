@@ -1,8 +1,8 @@
-// js/main.js - Lógica interactiva con Paleta Black
+// js/main.js - Lógica interactiva con Paleta Black, Carrusel 3D y Ventana Modal Premium
 
 document.addEventListener('DOMContentLoaded', async () => {
     
-    // ===== ELEMENTOS DEL DOM =====
+    // ===== ELEMENTOS DEL DOM (Principal) =====
     const productTitle = document.getElementById('product-title');
     const productSubtitle = document.getElementById('product-subtitle');
     const productPrice = document.getElementById('product-price');
@@ -17,6 +17,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const addToCartBtn = document.getElementById('add-to-cart-btn');
     const toastContainer = document.getElementById('toast-container');
     const productBadge = document.getElementById('product-badge');
+
+    // ===== ELEMENTOS DEL DOM (Modal) =====
+    const productModal = document.getElementById('product-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalContent = document.getElementById('modal-content');
+    const closeModalBtn = document.getElementById('close-modal');
+    const modalAddToCartBtn = document.getElementById('modal-add-to-cart-btn');
+    const modalMainImg = document.getElementById('modal-main-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const modalPrice = document.getElementById('modal-price');
+    const modalThumbnails = document.getElementById('modal-thumbnails');
 
     // ===== LÓGICA DEL MODO OSCURO =====
     const themeToggleBtn = document.getElementById('theme-toggle');
@@ -50,11 +62,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         showToast(isDark ? 'Modo Oscuro activado' : 'Modo Claro activado', 'info');
     });
 
+    // ===== ESTADO GLOBAL DE LA APP =====
     let shoesData = [];
     let currentModel = null;
     let currentColor = null;
     let cartItems = 0;
     let selectedSize = null;
+    
+    // Variables para el Carrusel de Imágenes
+    let imageInterval = null;
+    let currentImageIndex = 0;
+
+    // Variable para la ventana modal
+    let modalCurrentShoe = null;
+
+    // Leer el carrito guardado al cargar la página principal
+    const savedCart = JSON.parse(localStorage.getItem('urbanCart')) || [];
+    cartItems = savedCart.length;
+    if (cartBadge) cartBadge.textContent = cartItems;
 
     // ===== FETCH DATA =====
     try {
@@ -82,8 +107,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateBadge();
     }
 
-    // ===== ACTUALIZAR UI CON ANIMACIÓN =====
+    // ===== ACTUALIZAR UI CON ANIMACIÓN Y CARRUSEL =====
     function updateUI() {
+        // Limpiar el carrusel anterior si existe
+        if (imageInterval) {
+            clearInterval(imageInterval);
+        }
+        currentImageIndex = 0;
+
         mainShoeImg.classList.add('opacity-0', 'scale-90');
         productTitle.classList.add('opacity-0', 'translate-y-4');
         productPrice.classList.add('opacity-0', 'translate-y-4');
@@ -94,7 +125,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             productPrice.textContent = `$${currentModel.price.toFixed(2)}`;
             bgWatermark.textContent = currentModel.name.split(' ')[0];
             
-            mainShoeImg.src = currentModel.baseImage;
+            // Determinar si hay arreglo de imágenes o usar la base
+            const imagesArray = currentModel.images && currentModel.images.length > 0 
+                                ? currentModel.images 
+                                : [currentModel.baseImage];
+            
+            // Cargar la primera imagen
+            mainShoeImg.src = imagesArray[0];
             mainShoeImg.style.filter = currentColor.cssFilter;
             
             const isDark = document.documentElement.classList.contains('dark');
@@ -113,12 +150,25 @@ document.addEventListener('DOMContentLoaded', async () => {
                 mainShoeImg.classList.add('opacity-100', 'scale-100');
                 productTitle.classList.remove('opacity-0', 'translate-y-4');
                 productPrice.classList.remove('opacity-0', 'translate-y-4');
+
+                // === INICIAR CARRUSEL SI HAY MÁS DE 1 IMAGEN ===
+                if (imagesArray.length > 1) {
+                    imageInterval = setInterval(() => {
+                        mainShoeImg.classList.add('opacity-0'); 
+                        
+                        setTimeout(() => {
+                            currentImageIndex = (currentImageIndex + 1) % imagesArray.length;
+                            mainShoeImg.src = imagesArray[currentImageIndex];
+                            mainShoeImg.classList.remove('opacity-0'); 
+                        }, 300); 
+                    }, 3500); 
+                }
             }, 50);
             
         }, 400);
     }
 
-    // ===== RENDER MODELOS =====
+    // ===== RENDER MODELOS (SIDEBAR) =====
     function renderModelsSidebar() {
         modelsSidebar.innerHTML = '';
         shoesData.forEach((model, index) => {
@@ -220,7 +270,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             info: 'border-brand-black dark:border-brand-gold'
         };
         
-        toast.className = `toast-in toast-glass dark:bg-brand-darkCard/90 dark:text-white ${borderColors[type] || borderColors.info} px-6 py-4 rounded-r-lg shadow-lg flex items-center justify-between gap-4 w-full`;
+        toast.className = `toast-in toast-glass dark:bg-brand-darkCard/90 dark:text-white ${borderColors[type] || borderColors.info} px-6 py-4 rounded-r-lg shadow-lg flex items-center justify-between gap-4 w-full z-50 relative`;
         toast.innerHTML = `
             <div class="flex items-center gap-3">
                 ${icons[type] || icons.info}
@@ -240,27 +290,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 4000);
     }
 
-    // ===== AGREGAR AL CARRITO =====
-    addToCartBtn.addEventListener('click', () => {
-        if (!selectedSize) {
-            showToast('Selecciona una talla para continuar.', 'error');
-            return;
-        }
-        
-        cartItems++;
-        cartBadge.textContent = cartItems;
-        cartBadge.classList.add('bump');
-        setTimeout(() => cartBadge.classList.remove('bump'), 300);
-        
-        showToast(`${currentModel.name} añadido a tu bolsa.`, 'success');
-        
-        const originalContent = addToCartBtn.innerHTML;
-        addToCartBtn.innerHTML = '<span class="relative z-10 font-sans tracking-widest text-green-400">AÑADIDO CON ÉXITO</span>';
-        
-        setTimeout(() => {
-            addToCartBtn.innerHTML = originalContent;
-        }, 2000);
-    });
+    // ===== AGREGAR AL CARRITO (Desde Visor Principal) =====
+    if(addToCartBtn) {
+        addToCartBtn.addEventListener('click', () => {
+            if (!selectedSize) {
+                showToast('Selecciona una talla para continuar.', 'error');
+                return;
+            }
+            
+            const cartItem = {
+                id: `${currentModel.id}-${currentColor.colorId}-${selectedSize}`, 
+                name: currentModel.name,
+                price: currentModel.price,
+                image: currentModel.baseImage,
+                colorFilter: currentColor.cssFilter,
+                colorName: currentColor.colorName,
+                size: selectedSize
+            };
+
+            let currentCart = JSON.parse(localStorage.getItem('urbanCart')) || [];
+            currentCart.push(cartItem);
+            localStorage.setItem('urbanCart', JSON.stringify(currentCart));
+
+            cartItems = currentCart.length;
+            if (cartBadge) {
+                cartBadge.textContent = cartItems;
+                cartBadge.classList.add('bump');
+                setTimeout(() => cartBadge.classList.remove('bump'), 300);
+            }
+            
+            showToast(`${currentModel.name} añadido a tu bolsa.`, 'success');
+            
+            const originalContent = addToCartBtn.innerHTML;
+            addToCartBtn.innerHTML = '<span class="relative z-10 font-sans tracking-widest text-green-500">AÑADIDO CON ÉXITO</span>';
+            
+            setTimeout(() => {
+                addToCartBtn.innerHTML = originalContent;
+            }, 2000);
+        });
+    }
 
     // ===== SCROLL REVEAL =====
     const scrollElements = document.querySelectorAll('.scroll-reveal');
@@ -297,7 +365,135 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // ===== EVENT LISTENERS =====
+    // ===== LÓGICA DE LA VENTANA MODAL (PREMIUM) =====
+    
+    // Hacer openModal global para que el HTML pueda llamarla
+    window.openModal = function(shoeId) {
+        if(!productModal || !modalOverlay || !modalContent) return;
+
+        modalCurrentShoe = shoesData.find(s => s.id === shoeId);
+        if(!modalCurrentShoe) return;
+
+        // Poblar textos
+        if(modalTitle) modalTitle.textContent = modalCurrentShoe.name;
+        if(modalSubtitle) modalSubtitle.textContent = modalCurrentShoe.subtitle;
+        if(modalPrice) modalPrice.textContent = `$${modalCurrentShoe.price.toFixed(2)}`;
+        
+        // Colores y Filtros base
+        const baseImg = modalCurrentShoe.baseImage;
+        const defaultFilter = modalCurrentShoe.colors[0].cssFilter;
+        
+        if(modalMainImg) {
+            modalMainImg.src = baseImg;
+            modalMainImg.style.filter = defaultFilter;
+        }
+
+        // Miniaturas
+        if(modalThumbnails) {
+            modalThumbnails.innerHTML = '';
+            if(modalCurrentShoe.images && modalCurrentShoe.images.length > 0) {
+                modalCurrentShoe.images.forEach((imgSrc) => {
+                    const thumb = document.createElement('button');
+                    thumb.className = 'w-16 h-16 md:w-20 md:h-20 bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl p-2 hover:border-brand-gold transition';
+                    
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imgSrc;
+                    imgElement.className = 'w-full h-full object-contain';
+                    imgElement.style.filter = defaultFilter;
+                    
+                    thumb.appendChild(imgElement);
+                    
+                    thumb.addEventListener('click', () => {
+                        modalMainImg.src = imgSrc;
+                    });
+                    
+                    modalThumbnails.appendChild(thumb);
+                });
+            }
+        }
+
+        // Animar entrada del modal
+        productModal.classList.remove('hidden');
+        productModal.classList.add('flex');
+        
+        setTimeout(() => {
+            modalOverlay.classList.remove('opacity-0');
+            modalOverlay.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95', 'opacity-0');
+            modalContent.classList.add('scale-100', 'opacity-100');
+        }, 10);
+        
+        // Bloquear scroll
+        document.body.style.overflow = 'hidden';
+    };
+
+    function closeModal() {
+        if(!productModal || !modalOverlay || !modalContent) return;
+
+        modalOverlay.classList.remove('opacity-100');
+        modalOverlay.classList.add('opacity-0');
+        modalContent.classList.remove('scale-100', 'opacity-100');
+        modalContent.classList.add('scale-95', 'opacity-0');
+        
+        setTimeout(() => {
+            productModal.classList.remove('flex');
+            productModal.classList.add('hidden');
+            document.body.style.overflow = ''; 
+        }, 300); 
+    }
+
+    if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if(modalOverlay) modalOverlay.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && productModal && !productModal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+
+    // ===== AGREGAR AL CARRITO (Desde el Modal) =====
+    if (modalAddToCartBtn) {
+        modalAddToCartBtn.addEventListener('click', () => {
+            if (!modalCurrentShoe) return;
+
+            // Tomar el color y talla por defecto del modelo abierto
+            const defaultColor = modalCurrentShoe.colors[0];
+            const defaultSize = modalCurrentShoe.availableSizes[2] || modalCurrentShoe.availableSizes[0];
+
+            const cartItem = {
+                id: `${modalCurrentShoe.id}-${defaultColor.colorId}-${defaultSize}`, 
+                name: modalCurrentShoe.name,
+                price: modalCurrentShoe.price,
+                image: modalCurrentShoe.baseImage,
+                colorFilter: defaultColor.cssFilter,
+                colorName: defaultColor.colorName,
+                size: defaultSize
+            };
+
+            let currentCart = JSON.parse(localStorage.getItem('urbanCart')) || [];
+            currentCart.push(cartItem);
+            localStorage.setItem('urbanCart', JSON.stringify(currentCart));
+
+            cartItems = currentCart.length;
+            if (cartBadge) {
+                cartBadge.textContent = cartItems;
+                cartBadge.classList.add('bump');
+                setTimeout(() => cartBadge.classList.remove('bump'), 300);
+            }
+            
+            showToast(`${modalCurrentShoe.name} añadido a tu bolsa.`, 'success');
+            
+            const originalContent = modalAddToCartBtn.innerHTML;
+            modalAddToCartBtn.innerHTML = '<span class="text-green-500 font-sans tracking-widest text-sm">¡AÑADIDO!</span>';
+            
+            setTimeout(() => {
+                modalAddToCartBtn.innerHTML = originalContent;
+                closeModal();
+            }, 1200);
+        });
+    }
+
+    // ===== EVENT LISTENERS GENERALES =====
     window.addEventListener('scroll', () => handleScrollAnimation());
     setTimeout(handleScrollAnimation, 400);
 
