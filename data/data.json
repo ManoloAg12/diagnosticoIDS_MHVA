@@ -44,11 +44,11 @@
       "discountPrice": 110.00,
       "isOffer": true,
       "category": "hombre",
-      "baseImage": "./assets/img/img1.png",
+      "baseImage": "./assets/img/airmax/img1.png",
       "images": [
-        "./assets/img/img1.png",
-        "./assets/img/img2.png",
-        "./assets/img/img3.png"
+        "./assets/img/airmax/img1.png",
+        "./assets/img/airmax/img2.png",
+        "./assets/img/airmax/img3.png"
       ],
       "availableSizes": [6, 7, 8, 8.5, 9, 10],
       "colors": [
@@ -74,11 +74,11 @@
       "discountPrice": 89.00,
       "isOffer": true,
       "category": "mujer",
-      "baseImage": "./assets/img/img1.png",
+      "baseImage": "./assets/img/DUNK LOW/img1.png",
       "images": [
-        "./assets/img/img1.png",
-        "./assets/img/img2.png",
-        "./assets/img/img3.png"
+        "./assets/img/DUNK LOW/img1.png",
+        "./assets/img/DUNK LOW/img2.png",
+        "./assets/img/DUNK LOW/img3.png"
       ],
       "availableSizes": [5, 6, 7, 8, 9],
       "colors": [
@@ -104,11 +104,11 @@
       "discountPrice": 179.00,
       "isOffer": true,
       "category": "hombre",
-      "baseImage": "./assets/img/img1.png",
+      "baseImage": "./assets/img/YEEZY BOOST/img1.png",
       "images": [
-        "./assets/img/img1.png",
-        "./assets/img/img2.png",
-        "./assets/img/img3.png"
+        "./assets/img/YEEZY BOOST/img1.png",
+        "./assets/img/YEEZY BOOST/img2.png",
+        "./assets/img/YEEZY BOOST/img3.png"
       ],
       "availableSizes": [6, 7, 8, 9, 10, 11],
       "colors": [
@@ -134,11 +134,11 @@
       "discountPrice": 149.00,
       "isOffer": true,
       "category": "hombre",
-      "baseImage": "./assets/img/img1.png",
+      "baseImage": "./assets/img/JORDAN 1/img1.png",
       "images": [
-        "./assets/img/img1.png",
-        "./assets/img/img2.png",
-        "./assets/img/img3.png"
+        "./assets/img/JORDAN 1/img1.png",
+        "./assets/img/JORDAN 1/img2.png",
+        "./assets/img/JORDAN 1/img3.png"
       ],
       "availableSizes": [6, 7, 8, 9, 10],
       "colors": [
@@ -163,11 +163,11 @@
       "price": 185.00,
       "isOffer": false,
       "category": "mujer",
-      "baseImage": "./assets/img/img1.png",
+      "baseImage": "./assets/img/NEW BALANCE/img1.png",
       "images": [
-        "./assets/img/img1.png",
-        "./assets/img/img2.png",
-        "./assets/img/img3.png"
+        "./assets/img/NEW BALANCE/img1.png",
+        "./assets/img/NEW BALANCE/img2.png",
+        "./assets/img/NEW BALANCE/img3.png"
       ],
       "availableSizes": [7, 8, 9, 10, 11],
       "colors": [
